@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 
+//inscription 
 export const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;    
@@ -28,6 +29,46 @@ export const registerUser = async (req, res) => {
     });
   } catch (error) {
     console.error("Erreur lors de l’inscription :", error);
+    res.status(500).json({ message: "Erreur serveur" });
+  }
+};
+
+//connection
+
+export const loginUser = async(req, res) => {
+  try {
+    const {email, password} = req.body;
+
+    //Je  si l'utilisateur existe
+    const user = await User.findOne({email});
+    if (!user) {
+      return res.status(404).json({message: "Utilisateur non trouvé"});
+    }
+
+    //je verifier le mot de passe 
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch){
+      return res.status(400).json({ message: "Mot de passe incorrect" });
+    }
+
+    //je cree le token JWT
+    const token = jwt.sign(
+      { id: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: "2h" }
+    );
+
+    res.json({
+      message: "Connexion réussie ✅",
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+  } catch (error) {
+    console.error("Erreur lors du login :", error);
     res.status(500).json({ message: "Erreur serveur" });
   }
 };
