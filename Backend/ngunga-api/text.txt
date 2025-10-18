@@ -1,0 +1,5 @@
+ wsl --shutdown
+ 
+serena@Listitch:~/Project/Ngunga-Learning-App/Backend/ngunga-api$ curl -X POST http://127.0.0.1:5000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Serena","email":"serena@test.com","password":"test123"}'
