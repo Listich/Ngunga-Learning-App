@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import { connectDB } from "./utils/db.js";
 import authRoutes from "./routes/authRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.get("/", (req, res) => {
   res.send("🚀 Ngunga API est en ligne !");
 });
 app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
 
 // Démarrer le serveur
 app.listen(PORT, () => {
