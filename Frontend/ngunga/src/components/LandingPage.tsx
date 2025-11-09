@@ -79,13 +79,13 @@ export function LandingPage({ onGetStarted, onLogin }: LandingPageProps) {
             {/* Floating badge */}
             <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--congo-yellow)] to-[var(--congo-yellow-light)] flex items-center justify-center">
+                {/* <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--congo-yellow)] to-[var(--congo-yellow-light)] flex items-center justify-center">
                   <Trophy className="w-6 h-6 text-white" />
-                </div>
-                <div>
+                </div> */}
+                {/* <div>
                   <p className="text-sm text-[var(--muted-foreground)]">Plus de</p>
                   <p className="text-[var(--foreground)]">10,000 apprenants</p>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -140,7 +140,9 @@ export function LandingPage({ onGetStarted, onLogin }: LandingPageProps) {
             C'est parti ! 🚀
           </Button>
         </div>
+      
       </div>
     </div>
+    
   );
 }

@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 
 const router = express.Router();
 
-// Récupérer le profil actuel (déjà fait)
+// Récupérer le profil actuel
 router.get("/profile", verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
@@ -19,7 +19,7 @@ router.get("/profile", verifyToken, async (req, res) => {
   }
 });
 
-// Modifier le profil utilisateur
+// Je modifier le profil utilisateur
 router.put("/profile", verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
@@ -30,17 +30,23 @@ router.put("/profile", verifyToken, async (req, res) => {
 
     const { name, email, password } = req.body;
 
-    // Met à jour les champs si fournis
+    // Met à jour les champs 
     if (name) user.name = name;
     if (email) user.email = email;
 
-    // Si un nouveau mot de passe est fourni → le hacher
+    // Si un nouveau mot de passe est fourni je le hacher
     if (password) {
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
     }
-
-    // Sauvegarde dans MongoDB
+    if (email && email !== user.email) {
+        const existingEmail = await User.findOne({ email });
+        if (existingEmail) {
+            return res.status(400).json({ message: "Cet email est déjà utilisé" });
+        }
+        user.email = email;
+    }
+    // Sauvegarde dans Ma bases de donne 
     const updatedUser = await user.save();
 
     res.json({

@@ -22,22 +22,47 @@ export function RegisterPage({ onRegister, onBack, onLoginClick }: RegisterPageP
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validation simple
-    if (formData.password !== formData.confirmPassword) {
-      alert("Les mots de passe ne correspondent pas");
-      return;
+
+  if (formData.password !== formData.confirmPassword) {
+    alert("Les mots de passe ne correspondent pas");
+    return;
+  }
+
+  if (!acceptTerms) {
+    alert("Veuillez accepter les conditions d'utilisation");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/api/auth/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+      }),
+    });
+
+    const data = await response.json();
+
+      if (response.ok) {
+        alert("✅ Compte créé avec succès !");
+        console.log("Utilisateur enregistré :", data);
+        onRegister();
+      } else {
+        alert(data.message || "Erreur lors de l'inscription");
+      }
+    } catch (error) {
+      console.error("Erreur frontend :", error);
+      alert("❌ Impossible de communiquer avec le serveur.");
     }
-    
-    if (!acceptTerms) {
-      alert("Veuillez accepter les conditions d'utilisation");
-      return;
-    }
-    
-    onRegister();
   };
+
 
   const handleChange = (field: string, value: string) => {
     setFormData({ ...formData, [field]: value });

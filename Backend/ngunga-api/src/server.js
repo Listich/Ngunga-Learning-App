@@ -1,5 +1,6 @@
 // src/server.js
 import express from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./utils/db.js";
 import authRoutes from "./routes/authRoutes.js";
@@ -10,20 +11,24 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Connexion MongoDB
-connectDB();
+app.use(cors({
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
 
-// Middleware JSON
 app.use(express.json());
 
-// Test route
+connectDB();
+
 app.get("/", (req, res) => {
   res.send("🚀 Ngunga API est en ligne !");
 });
+
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 
-// Démarrer le serveur
 app.listen(PORT, () => {
   console.log(`✅ Serveur lancé sur http://localhost:${PORT}`);
 });
