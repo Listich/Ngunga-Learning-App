@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-size: 16px;
+    --background: #fafafa;
+    --foreground: #1a1a1a;
+    --card: #ffffff;
+    --card-foreground: #1a1a1a;
+    --popover: #ffffff;
+    --popover-foreground: #1a1a1a;
+    --primary: #2d7a3e;
+    --primary-foreground: #ffffff;
+    --secondary: #f8f8f8;
+    --secondary-foreground: #1a1a1a;
+    --muted: #f0f0f0;
+    --muted-foreground: #6b6b6b;
+    --accent: #fbbf24;
+    --accent-foreground: #1a1a1a;
+    --destructive: #dc2626;
+    --destructive-foreground: #ffffff;
+    --border: rgba(0, 0, 0, 0.1);
+    --input: transparent;
+    --input-background: #f3f3f5;
+    --switch-background: #cbced4;
+    --font-weight-medium: 500;
+    --font-weight-normal: 400;
+    --ring: #d4d4d4;
+    --chart-1: #f97316;
+    --chart-2: #06b6d4;
+    --chart-3: #3b82f6;
+    --chart-4: #a855f7;
+    --chart-5: #ec4899;
+    --radius: 1rem;
+    --sidebar: #fafafa;
+    --sidebar-foreground: #1a1a1a;
+    --sidebar-primary: #030213;
+    --sidebar-primary-foreground: #fafafa;
+    --sidebar-accent: #f5f5f5;
+    --sidebar-accent-foreground: #262626;
+    --sidebar-border: #e5e5e5;
+    --sidebar-ring: #d4d4d4;
+    
+    /* Congo flag-inspired colors */
+    --congo-green: #2d7a3e;
+    --congo-green-light: #40a855;
+    --congo-green-lighter: #e8f5ea;
+    --congo-yellow: #fbbf24;
+    --congo-yellow-light: #fcd34d;
+    --congo-yellow-lighter: #fef9e7;
+    --congo-red: #dc2626;
+    --congo-red-light: #ef4444;
+    --congo-red-lighter: #fee2e2;
+  }
+
+  .dark {
+    --background: #1a1a1a;
+    --foreground: #fafafa;
+    --card: #1a1a1a;
+    --card-foreground: #fafafa;
+    --popover: #1a1a1a;
+    --popover-foreground: #fafafa;
+    --primary: #fafafa;
+    --primary-foreground: #262626;
+    --secondary: #404040;
+    --secondary-foreground: #fafafa;
+    --muted: #404040;
+    --muted-foreground: #a3a3a3;
+    --accent: #404040;
+    --accent-foreground: #fafafa;
+    --destructive: #7f1d1d;
+    --destructive-foreground: #fca5a5;
+    --border: #404040;
+    --input: #404040;
+    --ring: #737373;
+    --chart-1: #7c2d12;
+    --chart-2: #065f46;
+    --chart-3: #1e3a8a;
+    --chart-4: #581c87;
+    --chart-5: #831843;
+    --sidebar: #262626;
+    --sidebar-foreground: #fafafa;
+    --sidebar-primary: #6366f1;
+    --sidebar-primary-foreground: #fafafa;
+    --sidebar-accent: #404040;
+    --sidebar-accent-foreground: #fafafa;
+    --sidebar-border: #404040;
+    --sidebar-ring: #737373;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  /* Base typography styles */
+  h1 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 500;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+  }
+
+  h3 {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    font-weight: 500;
+  }
+
+  h4 {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+  }
+
+  label {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+  }
+
+  button {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 500;
+  }
+
+  input {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+  }
+}
+
+html {
+  font-size: var(--font-size);
+}
